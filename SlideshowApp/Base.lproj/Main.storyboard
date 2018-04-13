@@ -72,6 +72,8 @@
                     <connections>
                         <outlet property="button1" destination="f0Q-8l-e0r" id="e7a-6m-DEb"/>
                         <outlet property="buttonstart" destination="IEt-sn-zD8" id="O3c-E9-JXZ"/>
+                        <outlet property="modorubutton" destination="cJs-ii-t85" id="N4p-D7-gi8"/>
+                        <outlet property="susumubutton" destination="Um4-Zf-vpX" id="8wV-q7-qNF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

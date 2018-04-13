@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     // 画像表示のUI
     @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var susumubutton: UIButton!
+    @IBOutlet weak var modorubutton: UIButton!
     // 再生・停止ボタンのUI
     @IBOutlet weak var buttonstart: UIButton!
     // 表示する画像を配列に格納
@@ -59,11 +61,19 @@ class ViewController: UIViewController {
     @IBAction func saisei_teisi(_ sender: Any) {
         // スライドが停止状態ならスライドをスタート、再生状態ならストップする
         if self.timer == nil {
+            // 進むボタン、戻るボタンを入力不可にする
+            susumubutton.isEnabled = false
+            modorubutton.isEnabled = false
+            
             // タイマーを動かす
             self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(slide), userInfo: nil, repeats: true)
             // ボタンを停止に変える
             buttonstart.setTitle("停止", for: UIControlState.normal)
         }else{
+            // 進むボタン、戻るボタンを入力可にする
+            susumubutton.isEnabled = true
+            modorubutton.isEnabled = true
+            
             // タイマーをストップ
             self.timer.invalidate()
             self.timer = nil
@@ -76,11 +86,19 @@ class ViewController: UIViewController {
     }
     // 画面遷移時に読み込み
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // タイマーをストップ
-        self.timer.invalidate()
-        self.timer = nil
-        // ボタンを再生に変える
-        buttonstart.setTitle("再生", for: UIControlState.normal)
+        // タイマーが再生中か確認
+        if timer != nil {
+            // 進むボタン、戻るボタンを入力可にする
+            susumubutton.isEnabled = true
+            modorubutton.isEnabled = true
+            
+            // タイマーをストップ
+            self.timer.invalidate()
+            self.timer = nil
+            
+            // ボタンを再生に変える
+            buttonstart.setTitle("再生", for: UIControlState.normal)
+        }
         
         // 遷移後ページのインスタンスを受け取る
         let gazouviewcontroller : GazouViewController = segue.destination as! GazouViewController
